@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de 3 minutos</title>
+    <style>
+        #contador {
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var tiempoRestante = 180; // 3 minutos en segundos
+            var contadorElemento = document.getElementById("contador");
+
+            var intervalo = setInterval(function() {
+                var minutos = Math.floor(tiempoRestante / 60);
+                var segundos = tiempoRestante % 60;
+
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+
+                contadorElemento.textContent = minutos + ":" + segundos;
+
+                if (tiempoRestante <= 0) {
+                    clearInterval(intervalo);
+                    contadorElemento.textContent = "¡Tiempo terminado!";
+                    alert("¡El tiempo ha terminado!");
+                }
+
+                tiempoRestante--;
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+    <h1>Contador de 3 minutos</h1>
+    <div id="contador">3:00</div>
+</body>
+</html>
